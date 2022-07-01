@@ -43,16 +43,20 @@ jobs:
         shell: powershell
         run: |
           dotnet tool update dotnet-reportgenerator-globaltool -g --version 4.8.7
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+      - name: list Directory
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"Puvvada-Ananth_eShopOnWeb_AYG5i_EJSB1XADPka4TX" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /d:sonar.coverageReportPaths="sonarqubecoverage/SonarQube.xml"
-          dotnet restore
-          echo "building...."
-          dotnet build eShopOnWeb.sln --configuration Release 
-          echo "testing"
-          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover  /p:CoverletOutput=coverage /p:Exclude=[xunit.*]* ./eShopOnWeb.sln
-          reportgenerator "-reports:TestResults/coverage.cobertura.xml" "-targetdir:sonarqubecoverage" "-reporttypes:SonarQube"
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          Get-ChildItem -path D:\a\eShopOnWeb -Directory -recurse
+      # - name: Build and analyze
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+      #   shell: powershell
+      #   run: |
+      #     .\.sonar\scanner\dotnet-sonarscanner begin /k:"Puvvada-Ananth_eShopOnWeb_AYG5i_EJSB1XADPka4TX" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /d:sonar.coverageReportPaths="sonarqubecoverage/SonarQube.xml"
+      #     dotnet restore
+      #     echo "building...."
+      #     dotnet build eShopOnWeb.sln --configuration Release 
+      #     echo "testing"
+      #     dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover  /p:CoverletOutput=coverage /p:Exclude=[xunit.*]* ./eShopOnWeb.sln
+      #     reportgenerator "-reports:TestResults/coverage.cobertura.xml" "-targetdir:sonarqubecoverage" "-reporttypes:SonarQube"
+      #     .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
