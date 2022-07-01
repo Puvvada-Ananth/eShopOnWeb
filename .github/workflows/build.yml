@@ -51,6 +51,8 @@ jobs:
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"Puvvada-Ananth_eShopOnWeb_AYG5i_EJSB1XADPka4TX" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /d:sonar.coverageReportPaths="sonarqubecoverage/SonarQube.xml"
           dotnet restore
           echo "building...."
-          dotnet build ./eShopOnWeb.sln --configuration Release 
+          dotnet build eShopOnWeb.sln --configuration Release 
           echo "testing"
+          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover  /p:CoverletOutput=coverage /p:Exclude=[xunit.*]* ./eShopOnWeb.sln
+          reportgenerator "-reports:TestResults/coverage.cobertura.xml" "-targetdir:sonarqubecoverage" "-reporttypes:SonarQube"
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
