@@ -46,13 +46,13 @@ jobs:
       - name: list Directory
         shell: powershell
         run: |
-          Get-ChildItem -path D:\a\eShopOnWeb -Directory -recurse
+          Get-ChildItem -path D:\a\eShopOnWeb -Directory -recurse -Include *trx
       # - name: Build and analyze
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
       #   shell: powershell
       #   run: |
-      #     .\.sonar\scanner\dotnet-sonarscanner begin /k:"Puvvada-Ananth_eShopOnWeb_AYG5i_EJSB1XADPka4TX" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /d:sonar.coverageReportPaths="sonarqubecoverage/SonarQube.xml"
+      #     .\.sonar\scanner\dotnet-sonarscanner begin /k:"Puvvada-Ananth_eShopOnWeb_AYG5i_EJSB1XADPka4TX" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}" /d:sonar.coverageReportPaths="*/sonarqubecoverage/SonarQube.xml"
       #     dotnet restore
       #     echo "building...."
       #     dotnet build eShopOnWeb.sln --configuration Release 
