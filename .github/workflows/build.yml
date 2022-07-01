@@ -52,11 +52,11 @@ jobs:
           dotnet restore
           echo "building...."
           dotnet build eShopOnWeb.sln --configuration Release
-          dotnet test *./UnitTests.csproj
+          dotnet test D:\a\eShopOnWeb\eShopOnWeb\tests\UnitTests\UnitTests.csproj
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-      - name: list all files and Directory after the build get passed
-        shell: powershell
-        run: |
-          Get-ChildItem -Path D:\a\eShopOnWeb\eShopOnWeb\ -Recurse
+      # - name: list all files and Directory after the build get passed
+      #   shell: powershell
+      #   run: |
+      #     Get-ChildItem -Path D:\a\eShopOnWeb\eShopOnWeb\ -Recurse
 
           
