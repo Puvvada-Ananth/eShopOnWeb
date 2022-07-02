@@ -47,7 +47,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         shell: bash
         run: |
-          ~/.sonar/scanner/dotnet-sonarscanner begin /k:"Puvvada-Ananth_eShopOnWeb_AYG5i_EJSB1XADPka4TX" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
+          ~/.sonar/scanner/dotnet-sonarscanner begin /k:"Puvvada-Ananth_eShopOnWeb_AYG5i_EJSB1XADPka4TX" /s:"$(pwd)/SonarQube.Analysis.xml" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
           echo "building......."
           dotnet build eShopOnWeb.sln
           echo "testing......."
