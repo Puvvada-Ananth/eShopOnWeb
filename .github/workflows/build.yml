@@ -34,7 +34,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p ~/.sonar/scanner
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --configfile NuGet-OfficialOnly.config
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
       - name: Install dotnet SonarQube scanner
         shell: bash
         run: |
