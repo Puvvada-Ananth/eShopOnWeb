@@ -2,10 +2,12 @@
   "version": "1.0",
   "defaultProvider": "cdnjs",
   "libraries": [
-    // {
-    //   "library": "jquery@3.3.1",
-    //   "destination": "wwwroot/lib/jquery/"
-    // },
+    {
+      "library": "jquery@3.3.1",
+      "destination": "wwwroot/lib/jquery/"
+    },
+    { "library": "jquery-validate@1.17.0", "destination": "wwwroot/lib/jquery-validation" },
+
     {
       "library": "twitter-bootstrap@3.3.7",
       "files": [
