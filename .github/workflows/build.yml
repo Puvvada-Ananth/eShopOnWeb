@@ -13,20 +13,24 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.11
+      - name: Set up dotnet 3.1.x 
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '3.1.x'
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0 
       - name: Cache SonarQube packages
         uses: actions/cache@v1
         with:
-          path: ~\sonar\cache
+          path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       - name: Cache SonarQube scanner
         id: cache-sonar-scanner
         uses: actions/cache@v1
         with:
-          path: .\.sonar\scanner
+          path: ~/.sonar/scanner
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
       - name: Install SonarQube scanner
@@ -34,15 +38,10 @@ jobs:
         shell: bash
         run: |
           mkdir -p ~/.sonar/scanner
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-      - name: Install dotnet SonarQube scanner
+          dotnet tool update dotnet-sonarscanner --tool-path ~/.sonar/scanner
+      - name: Dotnet tools restore
         shell: bash
-        run: |
-          dotnet tool install --global dotnet-sonarscanner --version 5.2.0
-      - name: Install dotnet-reportgenetor scanner
-        shell: bash
-        run: |
-          dotnet tool update dotnet-reportgenerator-globaltool -g --version 4.8.7
+        run: dotnet tool restore
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
