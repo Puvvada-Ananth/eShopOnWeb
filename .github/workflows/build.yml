@@ -39,15 +39,15 @@ jobs:
         run: |
           mkdir -p ~/.sonar/scanner
           dotnet tool update dotnet-sonarscanner --tool-path ~/.sonar/scanner
-      - name: Dotnet tools restore
-        shell: bash
-        run: dotnet tool restore
+      # - name: Dotnet tools restore
+      #   shell: bash
+      #   run: dotnet tool restore
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         shell: bash
         run: |
-          ./.sonar/scanner/dotnet-sonarscanner begin /k:"Puvvada-Ananth_eShopOnWeb_AYG5i_EJSB1XADPka4TX" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
+          ~/.sonar/scanner/dotnet-sonarscanner begin /k:"Puvvada-Ananth_eShopOnWeb_AYG5i_EJSB1XADPka4TX" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
           dotnet restore
           echo "building...."
           dotnet build eShopOnWeb.sln --configuration Release
