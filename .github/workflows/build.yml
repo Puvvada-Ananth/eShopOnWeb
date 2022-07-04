@@ -39,9 +39,10 @@ jobs:
         run: |
           mkdir -p ~/.sonar/scanner
           dotnet tool update dotnet-sonarscanner --tool-path ~/.sonar/scanner
-      # - name: Dotnet tools restore
-      #   shell: bash
-      #   run: dotnet tool restore
+      - name: Install report generation tool
+        shell: bash
+        run: |
+          dotnet tool update dotnet-reportgenerator-globaltool -g --version 4.8.7
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
@@ -51,5 +52,5 @@ jobs:
           echo "building......."
           dotnet build eShopOnWeb.sln
           echo "testing......."
-          dotnet test /home/runner/work/eShopOnWeb/eShopOnWeb/eShopOnWeb.sln /p:CollectCoverage=true /p:CoverletOutputFormat=opencover,xml --logger .trx --results-directory ./testresults
+          dotnet test /home/runner/work/eShopOnWeb/eShopOnWeb/eShopOnWeb.sln /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=coverage --results-directory ./testresults
           ~/.sonar/scanner/dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
