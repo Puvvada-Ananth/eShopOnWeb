@@ -52,5 +52,5 @@ jobs:
           echo "building......."
           dotnet build eShopOnWeb.sln
           echo "testing......."
-          dotnet test /home/runner/work/eShopOnWeb/eShopOnWeb/eShopOnWeb.sln /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=coverage --results-directory ./testresults
+          dotnet test /home/runner/work/eShopOnWeb/eShopOnWeb/eShopOnWeb.sln /p:CollectCoverage=true /p:Exclude=[xunit.*]* /p:CoverletOutputFormat=opencover /p:CoverletOutput=coverage --results-directory ./testresults --logger --logger trx
           ~/.sonar/scanner/dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
