@@ -1,0 +1,7 @@
+<SonarQubeAnalysisProperties  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+  <Property Name="sonar.projectKey">eShopOnWeb</Property>
+  <Property Name="sonar.host.url">http://54.184.181.37:9000</Property>
+  <Property Name="sonar.verbose">false</Property>
+  <Property Name="sonar.cs.opencover.reportsPaths">**/coverage-results/coverlet.opencover.xml</Property>
+  <Property Name="sonar.cs.vstest.reportsPaths">**/testresults/*.trx</Property>
+</SonarQubeAnalysisProperties>
