@@ -4,4 +4,5 @@
   <Property Name="sonar.verbose">false</Property>
   <Property Name="sonar.cs.opencover.reportsPaths">**/coverage-results/coverlet.opencover.xml</Property>
   <Property Name="sonar.cs.vstest.reportsPaths">**/testresults/*.trx</Property>
+  <Property Name="sonar.analysis.Puvvada-Ananth_eShopOnWeb_AYG5i_EJSB1XADPka4TX">Puvvada-Ananth_eShopOnWeb_AYG5i_EJSB1XADPka4TX</Property>
 </SonarQubeAnalysisProperties>
