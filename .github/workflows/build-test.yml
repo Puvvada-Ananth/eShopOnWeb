@@ -1,5 +1,8 @@
 name: Flutter_Web_On_Demand
 
+env:
+  Verbosity: Normal
+
 on:
   workflow_dispatch:
     inputs:
